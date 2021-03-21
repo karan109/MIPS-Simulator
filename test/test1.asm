@@ -1,3 +1,4 @@
+# A complete MIPS program
 main:#main label
 	addi $t0, $zero, 0      # add immediate
 	addi $t1, $zero, 4		# add immediate

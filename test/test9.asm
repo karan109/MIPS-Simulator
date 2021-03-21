@@ -1,3 +1,4 @@
+# Multiple lw and sw commands
 lw $t5, 136($s0)
 lw $t6, 920($s5)
 lw $t5, 144($s0)

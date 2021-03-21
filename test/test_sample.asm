@@ -1,3 +1,4 @@
+# Sample test case
 main:
 	addi $s0, $zero, 1000
 	addi $s1, $zero, 1024
