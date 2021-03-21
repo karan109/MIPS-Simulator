@@ -1,5 +1,5 @@
 /*input
-fast 10 2
+fast 100 10
 */
 #include <fstream>
 #include <iostream>
@@ -972,7 +972,14 @@ int main()
     // cin >> file_name;
 
     cin >> mode >> row_delay >> col_delay;
-
+    if(mode != "slow" and mode != "fast"){
+        cout << "Invalid mode" << endl << endl;
+        exit(3);
+    }
+    if(row_delay < 0 or col_delay < 0){
+        cout << "Invalid ROW or COLUMN ACCESS DELAY" << endl << endl;
+        exit(3);
+    }
     ifstream fin("test/"+file_name);
     string line;
     int line_num = 0;
@@ -1004,10 +1011,10 @@ int main()
         else{
             cycle++;
         }
-        // if(cycle-1 > 10000){
-        //     cout << "Time limit exceeded. Aborting..." << endl << endl;
-        //     exit(3);
-        // }
+        if(cycle-1 > 100000){
+            cout << "Time limit exceeded. Aborting..." << endl << endl;
+            exit(3);
+        }
     }
     for(auto u:temp_output){
         output.push_back(u);
