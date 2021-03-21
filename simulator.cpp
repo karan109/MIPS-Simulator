@@ -965,24 +965,39 @@ void printRegisters()
     cout << "------------------------------------------------------";
 }
 
-int main()
+int main(int argc, char* argv[])
 {
     init_registers();
+    // if(argc != 5){
+    //     cout << "Incorrect number of arguments. Aborting..." << endl << endl;
+    //     exit(3);
+    // }
+    string file_name = argv[1];
+    mode = argv[2];
+    string row_delay_str = argv[3];
+    string col_delay_str = argv[4];
 
-    string file_name = "test.asm";
     // cout<<"Enter file name: ";
     // cin >> file_name;
-
-    cin >> mode >> row_delay >> col_delay;
     if(mode != "slow" and mode != "fast"){
         cout << "ERROR: Invalid mode" << endl << endl;
         exit(3);
     }
+    if(!isint(row_delay_str) or !isint(col_delay_str)){
+        cout << "ERROR: Invalid ROW or COLUMN ACCESS DELAY" << endl << endl;
+        exit(3);
+    }
+    row_delay = stoi(row_delay_str);
+    col_delay = stoi(col_delay_str);
     if(row_delay < 0 or col_delay < 0){
         cout << "ERROR: Invalid ROW or COLUMN ACCESS DELAY" << endl << endl;
         exit(3);
     }
     ifstream fin("test/"+file_name);
+    if(!fin){
+        cout << "ERROR: Invalid input file. Aborting..." << endl << endl;
+        exit(3);
+    }
     string line;
     int line_num = 0;
     while (getline(fin, line))
