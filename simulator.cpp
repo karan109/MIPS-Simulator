@@ -1,5 +1,7 @@
-/*input
-fast 10 2
+/*
+Karan Aggarwal
+2019CS10699
+Date - 21/03/2021
 */
 #include <fstream>
 #include <iostream>
