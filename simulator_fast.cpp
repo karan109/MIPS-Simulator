@@ -936,13 +936,12 @@ int main()
         check_error(instructions[i], i);
     }
     int i = 0;
-    int x = 0;
-    while (i < instructions.size() and x < 40)
+    while (i < instructions.size())
     {
         count_map[i]++;
 
         i = process(instructions[i], i);
-        if(loading_cycle == temp_output.size()-1 and (loading == true or storing == true)){
+        if(loading_cycle == temp_output.size() and (loading == true or storing == true)){
             output_size += temp_output.size();
             // compress();
             for(auto u:temp_output){
@@ -958,7 +957,6 @@ int main()
         else{
             cycle++;
         }
-        x++;
     }
     output_size += temp_output.size();
     // compress();

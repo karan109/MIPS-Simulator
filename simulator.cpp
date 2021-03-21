@@ -986,7 +986,7 @@ int main()
     }
     int i = 0;
     int x = 0;
-    while (i < instructions.size() and x < 40)
+    while (i < instructions.size())
     {
         count_map[i]++;
 
@@ -1004,10 +1004,11 @@ int main()
         else{
             cycle++;
         }
-        x++;
+        // if(cycle-1 > 10000){
+        //     cout << "Time limit exceeded. Aborting..." << endl << endl;
+        //     exit(3);
+        // }
     }
-    output_size += temp_output.size();
-    // compress();
     for(auto u:temp_output){
         output.push_back(u);
     }
