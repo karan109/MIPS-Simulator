@@ -760,7 +760,7 @@ int process(vector<string> &instruction, int num)
         getRegs(b);
         int memory_access_index = registers[b] + stoi(c, 0, isint(c));
         int row = memory_access_index / 1024;
-        if (memory_access_index >= 1048576 or memory_access_index < 0)
+        if (memory_access_index >= 1048576 or memory_access_index < instructions.size() * 4)
         {
             cout << "ERROR: Invalid memory address access attempt at line " << line_map[num] << endl << endl;
             cycle--;
@@ -831,7 +831,7 @@ int process(vector<string> &instruction, int num)
         getRegs(b);
         int memory_access_index = registers[b] + stoi(c, 0, isint(c));
         int row = memory_access_index / 1024;
-        if (memory_access_index >= 1048576 or memory_access_index < 0)
+        if (memory_access_index >= 1048576 or memory_access_index < instructions.size() * 4)
         {
             cout << "ERROR: Invalid memory address access attempt at line " << line_map[num] << endl << endl;
             cycle--;

@@ -1,5 +1,5 @@
 /*input
-fast 100 10
+fast 10 2
 */
 #include <fstream>
 #include <iostream>
@@ -768,15 +768,16 @@ int process(vector<string> &instruction, int num)
         getRegs(a);
         getRegs(b);
         int memory_access_index = registers[b] + stoi(c, 0, isint(c));
+        int size = instructions.size();
         int row = memory_access_index / 1024;
-        if (memory_access_index >= 1048576 or memory_access_index < 0)
+        if (memory_access_index >= 1048576 or memory_access_index < size*4)
         {
-            cout << "ERROR: Invalid memory address access attempt at line " << line_map[num] << endl << endl;
+            cout << "ERROR: Invalid memory address access attempt at line " << line_map[num] << ". Ignoring instruction..." << endl;
             cycle--;
         }
         else if (memory_access_index % 4 != 0)
         {
-            cout << "ERROR: Unaligned memory address access attempt at line " << line_map[num] << endl << endl;
+            cout << "ERROR: Unaligned memory address access attempt at line " << line_map[num] << ". Ignoring instruction..." << endl;
             cycle--;
         }
         else
@@ -860,15 +861,16 @@ int process(vector<string> &instruction, int num)
         getRegs(a);
         getRegs(b);
         int memory_access_index = registers[b] + stoi(c, 0, isint(c));
+        int size = instructions.size();
         int row = memory_access_index / 1024;
-        if (memory_access_index >= 1048576 or memory_access_index < 0)
+        if (memory_access_index >= 1048576 or memory_access_index < size * 4)
         {
-            cout << "ERROR: Invalid memory address access attempt at line " << line_map[num] << endl << endl;
+            cout << "ERROR: Invalid memory address access attempt at line " << line_map[num] << ". Ignoring instruction..." << endl;
             cycle--;
         }
         else if (memory_access_index % 4 != 0)
         {
-            cout << "ERROR: Unaligned memory address access attempt at line " << line_map[num] << endl << endl;
+            cout << "ERROR: Unaligned memory address access attempt at line" << line_map[num] << ". Ignoring instruction..." << endl;
             cycle--;
         }
         else
@@ -973,11 +975,11 @@ int main()
 
     cin >> mode >> row_delay >> col_delay;
     if(mode != "slow" and mode != "fast"){
-        cout << "Invalid mode" << endl << endl;
+        cout << "ERROR: Invalid mode" << endl << endl;
         exit(3);
     }
     if(row_delay < 0 or col_delay < 0){
-        cout << "Invalid ROW or COLUMN ACCESS DELAY" << endl << endl;
+        cout << "ERROR: Invalid ROW or COLUMN ACCESS DELAY" << endl << endl;
         exit(3);
     }
     ifstream fin("test/"+file_name);
@@ -1011,7 +1013,7 @@ int main()
         else{
             cycle++;
         }
-        if(cycle-1 > 100000){
+        if(cycle-1 > 1000000){
             cout << "Time limit exceeded. Aborting..." << endl << endl;
             exit(3);
         }
@@ -1022,11 +1024,11 @@ int main()
     cycle = output.size()+1;
     temp_output.clear();
 
-    cout << "Total number of cycles: " << dec << output.size() << endl;
+    cout << endl << "Output" << endl << endl << "Total number of cycles: " << dec << output.size() << endl;
     cout << "Number of instructions: " << dec << instructions.size() << endl;
     cout << "Total number of row buffer updates: " << dec << buffer_updates << endl << endl;
     cout << "Memory content at the end of the execution: " << endl << endl;
-    memory[buffer_ind] = buffer;
+    if(buffer_ind != -1) memory[buffer_ind] = buffer;
     for(int i=0;i<1024*1024;i += 4){
         if(get_word_from_memory(i) != 0){
             cout << i << "-" << i+3 << ": " << get_word_from_memory(i) << endl;
