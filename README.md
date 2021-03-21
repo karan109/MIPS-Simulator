@@ -22,7 +22,7 @@ Here, 4 command line arguments are taken.
 ```
 This simulates the file in Non Blocking mode (Part 2) with ROW_ACCESS_DELAY = 10 and COL_ACCESS_DELAY = 2
 ```bash
-./simulator test_sample.asm fast 10 2
+./simulator test_sample.asm slow 10 2
 ```
 This simulates the file in Blocking mode (Part 1) with ROW_ACCESS_DELAY = 10 and COL_ACCESS_DELAY = 2
 
