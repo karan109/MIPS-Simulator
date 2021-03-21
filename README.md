@@ -15,7 +15,7 @@ Here, 4 command line arguments are taken.
 
 ## Usage
 * Build the executable
-* Store the input file in the ./test folder - test/test_sample.asm
+* Store the input file in the ./test folder, for example - test/test_sample.asm
 * Sample:
 ```bash
 ./simulator test_sample.asm fast 10 2
