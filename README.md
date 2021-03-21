@@ -13,7 +13,7 @@ This builds the executable ./simulator
 ```
 Here, 4 command line arguments are taken.
 
-##Usage
+## Usage
 * Build the executable
 * Store the input file in the ./test folder - test/test_sample.asm
 * Sample:
